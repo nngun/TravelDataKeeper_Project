@@ -1,0 +1,19 @@
+{
+    "name": "project2",
+    "version": "1.0.0",
+    "description": "Travel Data Keeper",
+    "scripts": {
+        "ng-prod": "cd ng && ng build --configuration production",
+        "ng-test-prod": "cd ng && ng build --configuration test-prod",
+        "fe": "firebase emulators:start --only functions,hosting",
+        "fd": "firebase deploy --only functions,hosting",
+        "fd-test": "firebase use test-onealtin && firebase deploy --only functions,hosting",
+        "prod": "cd functions && npm run prod"
+    },
+    "author": "Nurten Gun"
+    "private": true,
+    "devDependencies": {
+        "@types/node": "^18.6.4"
+    },
+    "dependencies": {}
+}
