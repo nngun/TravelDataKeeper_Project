@@ -1,0 +1,24 @@
+<header id="header" class="header fixed-top d-flex align-items-center">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a routerLink="/" class="logo d-flex align-items-center me-auto me-lg-0">
+      <!-- Uncomment the line below if you also wish to use an image logo -->
+      <!-- <img src="assets/img/logo.png" alt=""> -->
+      <h1>Travel Data Keeper<span style="font-size: 2rem">.</span></h1>
+    </a>
+
+    <nav id="navbar" class="navbar text-light">
+      <div *ngIf="isLoggedIn" class="btn"><a routerLink="/menu" class="text-danger">Travel</a></div>
+      <div class="btn"><a routerLink="/inspire" class="text-secondary">Inspiration</a></div>
+      <div *ngIf="!isLoggedIn" class="btn"><a routerLink="/login" class="text-secondary">Sign In</a></div>
+      <div *ngIf="!isLoggedIn" class="btn btn-sm btn-info"><a routerLink="/register" class="text-light">Sign Up</a>
+      </div>
+      <div *ngIf="isLoggedIn" class="btn btn-sm btn-info"><a (click)="logout()" class="text-light">Sign Out</a> </div>
+    </nav>
+  </div>
+</header>
+<!-- End Header -->
+
+
+<div style="margin-top:100px">
+  <router-outlet></router-outlet>
+</div>
