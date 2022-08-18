@@ -1,0 +1,48 @@
+<section id="travel" class="travel section-bg py-5">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-header">
+      <h2>LOGIN</h2>
+      <p>Please <span>Sign In</span> First</p>
+    </div>
+
+
+
+    <section id="map-book" class="map-book">
+      <div class="container aos-init aos-animate" data-aos="fade-up"
+        style="background-image: url(assets/img/travel.png); background-repeat: no-repeat;">
+        <div class="card bg-light mb-3 col-6 mx-auto">
+          <div class=" card-body p-5">
+            <br>
+            <br>
+            <form class="" [formGroup]="loginform" (ngSubmit)="loginSubmit()">
+              <div class="form-group mb-4">
+                <label class="h6 text-dark-50" for="exampleInputEmail1">Username:</label>
+                <input type="text" class="form-control form-control-lg p-4" id="loginFieldID"
+                  aria-describedby="emailHelp" placeholder="Please enter username..." formControlName="login" />
+                <div class="invalid-feedback">Please enter username...</div>
+              </div>
+              <div class="form-group">
+                <label class="h6 text-dark-50" for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control form-control-lg p-4" id="passwordFieldID" name="password"
+                  placeholder="Please enter username..." formControlName="password" />
+                <div class="invalid-feedback">Please enter password...</div>
+              </div>
+              <div *ngIf="errorMessage" class="alert alert-danger h6" role="alert">
+                {{ errorMessage }}
+              </div>
+              <div class="align-middle align-content-center text-center justify-content-start mt-5">
+                <button type="submit" class="btn btn-info mx-auto">
+                  <div class="h6 my-auto">Sign In</div>
+                </button>
+              </div>
+            </form>
+            <br>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</section>
