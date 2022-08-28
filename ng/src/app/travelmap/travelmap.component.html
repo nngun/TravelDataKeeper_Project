@@ -1,0 +1,147 @@
+<section id="travel" class="travel section-bg  py-5">
+  <div class="container" data-aos="fade-up">
+    <div class="section-header">
+      <h2>MAP</h2>
+      <p>CREATE YOUR CUSTOM <span> TRAVEL MAP</span></p>
+    </div>
+
+
+<!-- User preferences requested as input to create customizable world travel map  -->
+    <div class="row">
+      <div class="col">
+        <form class="" [formGroup]="mapForm" (ngSubmit)="saveMap()">
+          <div class="p h4 my-4 text-secondary">Map Info </div>
+          <br>
+          <div class="form-group mb-4 col-11 mx-auto">
+            <!-- travel map title  -->
+
+            <label class="h6 text-dark-50">Title:</label>
+            <input type="text" class="form-control form-control-lg p-4" id="title" placeholder="Please enter title..." formControlName="title" />
+            <div class="invalid-feedback">Please enter title...</div>
+          </div>
+            <!-- travel map background colour  -->
+
+          <div class="form-group mb-4 col-11 mx-auto">
+            <label class="h6 text-dark-50">Background Color:</label>
+            <input class="form-control form-control-lg p-4" [style.background]="bgColor" [style.color]="bgColor" placeholder="Select background-color of your map..." [colorPicker]="bgColor" (colorPickerChange)="onChangeBgColor($event)" formControlName="bgColor" />
+          </div>
+            <!-- rest of map colour  -->
+
+          <div class="form-group mb-4 col-11 mx-auto">
+            <label class="h6 text-dark-50">Rest Color:</label>
+            <input class="form-control form-control-lg p-4" [style.background]="restColor" [style.color]="restColor" placeholder="Select color for not selected places..." [colorPicker]="restColor" (colorPickerChange)="onChangeRestColor($event)" formControlName="restColor"
+            />
+          </div>
+          <br>
+          <br>
+
+            <!-- in this section user can create as many categories as they wish  -->
+
+          <div class="p h4 my-4 text-secondary">Category Section
+            <div (click)="addCategoryFormGroup()" class="btn btn-sm btn-success mx-4">
+              Add new Category</div>
+          </div>
+
+          <div class="my-4" formArrayName="categories">
+            <hr>
+            <ng-container *ngFor="let categoryForm of categoriesForms.controls; let i = index">
+              <div class="row" [formGroupName]="i">
+
+                <div class="col-1">
+                  <div class="btn btn-danger mt-4" type="button" (click)="removeCategoryFormGroup(i)">
+                    X</div>
+                </div>
+
+                <div class="col-3 col-md-3">
+                  <div class="mb-3">
+                    <label [for]="'name' + i" class="h6 text-dark-50 form-label">Category
+                      Name</label>
+                    <input type="text" class="form-control form-control-lg p-4" [id]="'name' + i" formControlName="name" />
+                  </div>
+                </div>
+
+                <div class="col-3 col-md-3">
+                  <div class="mb-3">
+                    <label [for]="'catColor' + i" class="h6 text-dark-50 form-label">Category
+                      Color:</label>
+                    <input class="form-control form-control-lg p-4" [id]="'catColor' + i" [style.background]="categoryColor[i]" [style.color]="categoryColor[i]" [colorPicker]="categoryColor[i]" (colorPickerChange)="onChangeCategoryColor($event, i)" formControlName="color"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-3 col-md-3">
+                  <div class="mb-3">
+                    <label class="h6 text-dark-50 form-label">Country List:</label>
+                    <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="countries" [(ngModel)]="selectedCountries[i]" [ngModelOptions]="{standalone: true}" (onSelect)="onItemSelect($event, i)" (onDeSelect)="onItemDeSelect($event,i)">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+                
+
+              </div>
+              <hr>
+            </ng-container>
+          </div>
+
+          <div class="align-middle align-content-center text-center justify-content-start mt-5">
+            <button type="submit" class="btn btn-info mx-auto h2">Save & Generate Map</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="p h4 my-4 text-secondary">Travel Map</div>
+          <div class="my-auto pl-4">
+            <button type="submit" class="btn btn-warning btn-sm mx-auto text-dark" (click)="saveAsImage()">Download
+              Map</button>
+          </div>
+        </div>
+
+        <div id="mapovich">
+          <div class="bg-dark text-light text-center py-1">{{map.title}}</div>
+          <google-chart [data]="geoChart">
+          </google-chart>
+
+          <div class="card bg-dark text-light" style="width: 15rem;position: absolute;margin-top: -275px; margin-left: 15px;">
+            <div class="card-body">
+              <h5 class="card-title">Categories</h5>
+              <ng-container *ngFor="let category of map.categories">
+                <div class="my-1">
+                  <button [ngStyle]="{'background-color': category.color}" [ngClass]="{'border-0': true}" class="p-1 pt-3 my-auto">
+                  </button>
+                  <span class="ml-2"> {{category.name}}</span>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+  </div>
+</section>
+<!-- End Travel Map Generation Section -->
