@@ -1,5 +1,5 @@
-# msc-information-technology-project-2021_22-ntuncer0616
-msc-information-technology-project-2021_22-ntuncer0616 created by GitHub Classroom
+# msc-information-technology-project-2021_22-nurten gun
+msc-information-technology-project-2021_22-nurten gun created by GitHub Classroom
 
 **General Information**
 
